@@ -77,6 +77,7 @@ void __log_message(const verbosity_t level, const char *file,
 	/* print system info first, then the log message */
 	fprintf(log_fp, "%s %s:%s:%d:", color_buffer, time_buffer, file, line);
 	free(time_buffer);
+	free(color_buffer);
 	vfprintf(log_fp, fmt, args);
 
 	va_end(args);
