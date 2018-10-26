@@ -35,8 +35,8 @@ void log_init(FILE *fp, verbosity_t v)
 	log_fp = fp;
 	log_level = v;
 
-	if (atexit(__log_fclose) != 0) {
-		/* register fclose for log_fp */
+	/* register fclose for log_fp */
+	if (atexit(__log_fclose)) {
 		perror("Cannot set exit function\n");
 		exit(EXIT_FAILURE);
 	}

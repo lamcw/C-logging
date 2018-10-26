@@ -17,4 +17,4 @@ obj/%.o: $(SRC)
 
 .PHONY: clean
 clean:
-	$(RM) -r $(OBJ) test.o src/core test_log obj
+	$(RM) -r $(OBJ) test.o src/core test_log obj log.txt
