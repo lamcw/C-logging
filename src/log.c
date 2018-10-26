@@ -25,10 +25,21 @@ static const char *log_verbosity_name[] = {
 static FILE *log_fp;
 static verbosity_t log_level;
 
+void __log_fclose(void)
+{
+	fclose(log_fp);
+}
+
 void log_init(FILE *fp, verbosity_t v)
 {
 	log_fp = fp;
 	log_level = v;
+
+	if (atexit(__log_fclose) != 0) {
+		/* register fclose for log_fp */
+		perror("Cannot set exit function\n");
+		exit(EXIT_FAILURE);
+	}
 }
 
 static inline char *get_curr_time_str(void)
