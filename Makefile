@@ -12,8 +12,9 @@ test: test/test_log.c obj/log.o
 	$(CC) $(CFLAGS) $(LIBS) $^ -o test_log
 
 obj/%.o: $(SRC)
+	@mkdir -p obj
 	$(CC) $(CFLAGS) $(LIBS) -c $^ -o $@
 
 .PHONY: clean
 clean:
-	$(RM) $(OBJ) test.o src/core test_log
+	$(RM) -r $(OBJ) test.o src/core test_log obj
